@@ -41,6 +41,9 @@ public class sistema_ferramentas {
 	}
 	
 	public void cadastrarFerramenta () {
+		if (C == MAX) {
+			System.out.println("Número máximo de ferramentas cadastradas atingido!");
+		} else {
 		System.out.println("\n\t|Cadastrar Ferramenta|\n");
 		System.out.print("Código: ");
 		codigo [C] = ler.nextInt();
@@ -57,7 +60,54 @@ public class sistema_ferramentas {
 		
 		System.out.println("Ferramenta Cadastrada com Sucesso!");
 		C++;
+		}
 	}
+	
+	public void exibirFerramenta () {
+		System.out.println("Código: "+codigo [C]);
+		System.out.println("Nome: "+nome [C]);
+		System.out.println("Categoria: "+categoria [C]);
+		System.out.println("Preço: "+preco [C]);
+		System.out.println("Quantidade: "+quantidade [C]);
+		System.out.println("Código: "+codigo [C]);
+	}
+	
+	public void exibirFerramentaCategoria () {
+		System.out.println("Código: "+codigo [C]);
+		System.out.println("Nome: "+nome [C]);
+		System.out.println("Preço: "+preco [C]);
+		System.out.println("Quantidade: "+quantidade [C]);
+		System.out.println("Código: "+codigo [C]);
+	}
+	
+	public void listarFerramentas () {
+		System.out.println("\nFERRAMENTAS POR CATEGORIA:");
+		  for (int i = 0; i < C; i++) {
+		        String categoriaAtual = categoria[i];
+		        
+		        // Verificar se essa categoria já foi exibida
+		        boolean categoriaJaExibida = false;
+		        for (int j = 0; j < i; j++) {
+		            if (categoria[j].equals(categoriaAtual)) {
+		                categoriaJaExibida = true;
+		                break;  // Interrompe o loop ao encontrar a categoria duplicada
+		            }
+		        }
+		        
+		        // Se a categoria ainda não foi exibida, lista todas as ferramentas dessa categoria
+		        if (!categoriaJaExibida) {
+		            System.out.println("\nCategoria: " + categoriaAtual);
+		            for (int k = 0; k < C; k++) {
+		                if (categoria[k].equals(categoriaAtual)) {
+		                    System.out.println("Nome: " + nome[k] + ", Código: " + codigo[k] +
+		                            ", Preço: R$" + preco[k] + ", Quantidade: " + quantidade[k]);
+		                }
+		            }
+		        }
+		    }
+	}
+	
+	
 	
 	public static void main(String[] args) {
 		
@@ -93,7 +143,7 @@ public class sistema_ferramentas {
 					
 					break;
 				case 6:
-					
+					sistema_principal.listarFerramentas();
 					break;
 				case 0:
 					System.out.println("\tSaindo... Obrigado por utilizar o Sistema!");
